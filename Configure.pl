@@ -1,2 +1,2 @@
-print "perl Configure.pl test output\n";
+print "perl Configure.pl (branchB) test output \n";
 
