@@ -1,0 +1,25 @@
+#!perl
+
+use strict;
+use warnings;
+
+use Test::Harness ();
+eval { require TAP::Harness::Archive };
+if ($@) {
+  die "Could not load TAP::Harness::Archive.";
+}
+
+
+
+my $harness = TAP::Harness::Archive->new(
+  {
+    verbosity => $ENV{HARNESS_VERBOSE} || 0,
+    archive   => $ENV{HARNESS_ARCHIVE} || 'harness-archive.tgz',
+    merge     => 1, # Merge STDOUT and STDERR together.
+    jobs      => $ENV{TEST_JOBS} || 1,
+  }
+);
+
+my @dirs_search = ( 't/*.t' );
+my @tests = map { glob($_) } @dirs_search;
+my $results = $harness->runtests(@tests);
