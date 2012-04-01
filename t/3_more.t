@@ -17,6 +17,6 @@ is(1,1,'base is test');
 
 ok(1,'ok test C');
 
-ok(0,'ok test D');
+ok(1,'ok test D');
 
 done_testing;
